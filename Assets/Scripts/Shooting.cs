@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
             currentBullet.transform.forward = directionWithoutSpread.normalized;
 
-            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * 20, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * 70, ForceMode.Impulse);
         }
     }
 }
