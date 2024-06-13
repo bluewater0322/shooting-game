@@ -103,3 +103,4 @@ public class Weapon : MonoBehaviour
             ammunitionDisplay.SetText($"Ammo {bulletsLeft} / {magazineSize}");
     }
 }
+

@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2810331006018492110}
   m_Layer: 0
   m_Name: ammo_pistol 1
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

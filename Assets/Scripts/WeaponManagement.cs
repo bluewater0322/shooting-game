@@ -19,6 +19,7 @@ public class WeaponManagement : MonoBehaviour
     private void Update()
     {
         MyInput();
+        
     }
 
     // 方法：偵測玩家操作狀態
