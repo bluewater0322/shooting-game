@@ -1,39 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public GameObject 子彈;
-    public Transform 生成位置;
-    private Camera mainCamera;
+    [Header("UI設定")]
+    public Image lifeBarImage;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        mainCamera = Camera.main;
+        PlayerController.onHpChange += UpdateLifeBar;   // 訂閱PlayerController的onHpChange通知
+                                                        // 也就是說，角色生命值變化，GameManager都會知道，再依據角色生命值的數值更新血條內容
+                                                        // 這樣的寫法可以減少程式之間的依賴程度(減低程式耦合的程度)
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            ShootBullet();
-        }
+        PlayerController.onHpChange -= UpdateLifeBar;  // 取消訂閱PlayerController的onHpChange通知
     }
-    void ShootBullet()
+
+    // 函式：更新血條
+    private void UpdateLifeBar(float _value)
     {
-        Vector3 cameraPosition = mainCamera.transform.position;
-        Vector3 cameraForward = mainCamera.transform.forward;
-        // 实例化子弹对象
-        GameObject bullet = Instantiate(子彈, 生成位置.position, Quaternion.identity);
-        Vector3 bulletDirection = cameraForward;
-
-        // 给子弹添加力，使其向前移动
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 5000f);
-
-        // 销毁子弹对象，防止游戏中出现大量无用的子弹
-        Destroy(bullet, 2f);
+        lifeBarImage.fillAmount = _value;
     }
 }
